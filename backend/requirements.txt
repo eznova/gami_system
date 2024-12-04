@@ -1,0 +1,5 @@
+Flask
+psycopg2-binary
+faker
+flasgger
+flask_cors

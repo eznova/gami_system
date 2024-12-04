@@ -1,0 +1,117 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="photo-upload"><img id="user-photo" src="{{photo}}" alt="Фото" class="img-fluid" style="cursor: pointer;"></label>
+                <input id="photo-upload" style="visibility:hidden;" type="file" accept="image/png">
+            </div>
+            <script>
+                document.getElementById('photo-upload').addEventListener('change', function(event) {
+                    const file = event.target.files[0]; // Получаем первый выбранный файл
+            
+                    if (file) {
+                        const reader = new FileReader();
+            
+                        // Когда файл прочитан
+                        reader.onloadend = function() {
+                            const base64Image = reader.result.split(',')[1]; // Извлекаем строку Base64 без префикса data:image/png;base64,
+            
+                            // Обновляем изображение на странице
+                            document.getElementById('user-photo').src = reader.result; 
+            
+                            // Выводим base64 строку в консоль (можно отправить на сервер)
+                            console.log('Base64 Image:', base64Image);
+            
+                            // Пример отправки base64 строки на сервер:
+                            uploadPhotoToServer(base64Image);
+                        };
+            
+                        // Читаем файл как Data URL (Base64)
+                        reader.readAsDataURL(file);
+                    }
+                });
+            
+                function uploadPhotoToServer(base64Image) {
+                    const userId = 1; // Замените на реальный ID пользователя
+            
+                    fetch(`http://localhost:5000/users/upload/${userId}/photo`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            photo: base64Image // Отправляем изображение в формате Base64
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Server response:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error uploading photo:', error);
+                    });
+                }
+            </script>
+            <div class="col-md-9">
+                <h4 class="card-title">{{surname}} {{name}} {{patronymic}}</h4>
+                <!-- Должность | Департамент | Роль -->
+                <p class="card-text" style="color: #C8C8C8;"> {{job_title}} | {{department}} | {{role}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 2em ;">
+                <p class="card-text">Контакты</p>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1em ;">
+            <div class="col-md-3">
+                <p class="card-text" style="color: #C8C8C8;">Telegram</p>
+                <p class="card-text">{{tg_nickname}}</p>
+            </div>
+            <div class="col-md-9">
+                <p class="card-text" style="color: #C8C8C8;">Телефон</p>
+                <p class="card-text">{{phone}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 2em ;">
+                <p class="card-text">Увлечения</p>
+                <p class="card-text">{{interests}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p class="card-text" style="color: #C8C8C8;">Счет</p>
+                <p class="card-text">{{ncoins}} Nscore</p>
+            </div>
+            <div class="col-md-9">
+                <p class="card-text" style="color: #C8C8C8;">Благодарности</p>
+                <p class="card-text">{{thanks_count}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 2em ;">
+                <p class="card-text">Команда</p>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="imgs/default_photo.svg" alt="Логотип" style="height: 40px;">                           
+                    </div>
+                    <div class="col-10">
+                        <h6 class="card-title">Фамилия Имя Отчество</h6>
+                        <p class="card-text" style="color: #C8C8C8;">Должность</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>

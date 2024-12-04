@@ -1,0 +1,70 @@
+/* Применяем шрифт Unbounded ко всему телу страницы */
+body {
+    font-family: 'Unbounded', sans-serif;
+    color: #3a3a3a;
+}
+
+/* Задаем фон и размеры для левой половины */
+.left-side {
+    background-image: url('imgs/background.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Центрируем форму по вертикали и горизонтали */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Стиль для карточки формы */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Изменяем цвет кнопки на #5367DF */
+.btn {
+    background-color: #5367DF;
+    border-color: #5367DF;
+    color: #FFFFFF;
+}
+
+.btn:hover {
+    background-color: #4a56d1;
+    border-color: #4a56d1;
+    color: #FFFFFF;
+}
+
+/* Стиль для checkbox в активном состоянии */
+.form-check-input:checked {
+    background-color: #5367DF;
+    border-color: #5367DF;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+.nav-item {
+    cursor: pointer;
+}
+.nav-item.selected {
+    background-color: #5367DF;
+    color: white;
+}
+.nav-item h4 {
+    margin-left: 10px;
+    font-size: 1rem;
+}
+svg {
+    flex-shrink: 0;
+}
+

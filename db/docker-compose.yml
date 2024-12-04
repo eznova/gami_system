@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: gami_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres # заменить на нестандартный логин
+      POSTGRES_PASSWORD: postgres # заменить на безопасный пароль
+      POSTGRES_DB: gami_db
+    ports:
+      - "5437:5432"
+    volumes:
+      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+      - postgres_data:/var/lib/postgresql/data
+    # network_mode: host
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin-data:
