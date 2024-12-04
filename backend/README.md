@@ -8,3 +8,6 @@ API для работы с базой данных.
 docker-compose up -d
 ```
 
+## Документация
+
+http://<url>:5000/apidocs
