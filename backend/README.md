@@ -18,3 +18,8 @@ docker-compose up -d
 ## Документация
 
 http://<url>:5000/apidocs
+
+Демо-сервер
+ - [Swagger](http://hmsrv.tplinkdns.com:5000/apidocs/)
+ - [API](http://hmsrv.tplinkdns.com:5000/)
+
